@@ -1,0 +1,74 @@
+body{
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("./img/fonslogin.jpg");
+}
+
+/*login.php*/
+.contenidor {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin: 5% 15% 0% 15%;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+}
+
+.contenidor1{
+    background-color: #fff; 
+    background-repeat: repeat-y; 
+    background-size: 100% 88px;
+    border-radius: 10px; 
+    background-position: 0% 0%; 
+    background-image: repeating-linear-gradient(-25deg, #fff, #fff 20px, #df5646 20px, #df5646 40px, #fff 40px, #fff 60px, #1c78a4 60px, #1c78a4 80px); 
+    animation: barberpole 4s linear infinite; 
+}
+
+.titol{
+    padding: 20px;
+    text-align: center;
+}
+
+.contingut {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: white;
+    color: black;
+}
+
+.login{
+    border-right: 2px solid black;
+    padding: 20px;
+}
+
+.registre{
+    padding: 20px;
+}
+
+.formulari{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.enviem{
+    float: right !important;
+}
+
+.contingut h5{
+    text-align: center;
+}
+
+@-webkit-keyframes barberpole {
+    0% { background-position: 0% 0%; } 100% { background-position: 0% 50%; } 
+}
+
+/*inici.php*/
