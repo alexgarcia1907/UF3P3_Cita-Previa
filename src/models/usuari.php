@@ -15,7 +15,7 @@ class usuari {
 
     public function afegir($dadesusuari) {
         $query = $this ->sql -> prepare('insert into usuari
-        (usuari,correu,contrasenya) values (:usuari,:correu,:contrasenya);');
+        (usuari,correu,contrasenya,rol) values (:usuari,:correu,:contrasenya);');
 
         $result = $query -> execute([':usuari' => $dadesusuari["usuari"],
         ':correu' => $dadesusuari["correu"],
@@ -34,6 +34,9 @@ class usuari {
         return $result;
     }
 
+    public function getrol($nomusuari) {
+        $query =$this->sql->prepare('select rol from usuari where nom = :nom;');
+        $result = $query->execute([':nom' => $nomusuari]);
+        return $result;
+    }
 }
-$hola = new usuari;
-$hola->conecta();
