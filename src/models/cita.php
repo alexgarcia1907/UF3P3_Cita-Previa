@@ -22,9 +22,13 @@ class cita {
     }
 
     public function getdades($idusuari) {
+        $dades = [];
         $query =$this->sql->prepare('select * from cita where idusuari =  :idusuari;');
-        $result = $query->execute([':idusuari' => $idusuari]);
-        return $result;
+        $result = $query->execute([':idusuari' => $idusuari["id"]]);
+        while ($value =$query-> fetch(\PDO::FETCH_ASSOC)) {
+            $dades[] = $value;
+        }
+        return $dades;
     }
 
     public function borrardades($idusuari) {

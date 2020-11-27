@@ -14,8 +14,7 @@ class usuari {
     }
 
     public function afegir($dadesusuari) {
-        $query = $this ->sql -> prepare('insert into usuari
-        (usuari,correu,contrasenya,rol) values (:usuari,:correu,:contrasenya);');
+        $query = $this ->sql -> prepare('insert into usuari (usuari,correu,contrasenya,rol) values (:usuari,:correu,:contrasenya);');
 
         $result = $query -> execute([':usuari' => $dadesusuari["usuari"],
         ':correu' => $dadesusuari["correu"],
@@ -23,20 +22,26 @@ class usuari {
     }
 
     public function getdades($nomusuari) {
+        $dades = [];
+
         $query =$this->sql->prepare('select * from usuari where nom =  :nom;');
         $result = $query->execute([':nom' => $nomusuari]);
-        return $result;
+
+        while ($value =$query-> fetch(\PDO::FETCH_ASSOC)) {
+            $dades[] = $value;
+        }
+        return $dades;
     }
 
     public function getid($nomusuari){
         $query =$this->sql->prepare('select id from usuari where nom = :nom;');
         $result = $query->execute([':nom' => $nomusuari]);
-        return $result;
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function getrol($nomusuari) {
         $query =$this->sql->prepare('select rol from usuari where nom = :nom;');
         $result = $query->execute([':nom' => $nomusuari]);
-        return $result;
+        return $query->fetch(\PDO::FETCH_ASSOC);
     }
 }
