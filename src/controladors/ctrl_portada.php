@@ -9,5 +9,4 @@ function ctrl_portada($sesio,$usuario,$cita){
       }
 
     $citesusu = $cita -> getdades($usuario -> getid($sesio -> obtenirnom()));
-
 }
