@@ -1,10 +1,10 @@
 <?php
 
 class usuari {
-    public function conecta() {
-        $parambbdd = 'mysql:dbname=uf3p3_cita_previa;host=sikuu.ddns.net;';
-        $user = "victor";
-        $pass = "2001";
+    public function conecta($nombd,$hostbd,$userbd,$passbd) {
+        $parambbdd = "mysql:dbname=$nombd;host=$hostbd;";
+        $user = $userbd;
+        $pass = $passbd;
 
         try {
             $this->sql = new PDO($parambbdd, $user, $pass);
