@@ -18,5 +18,9 @@ $festius = array(
 $añoactu = new DateTime();
 $añoactual = $añoactu -> format('Y');
 
+$diaactual = new DateTime();
+$diaactu = $diaactual -> format('D');
+
+
 $mesactu = new DateTime();
 $mesactual = $mesactu -> format ('m');
