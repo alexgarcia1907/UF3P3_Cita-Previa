@@ -8,12 +8,13 @@
  * @param numsdiesfesta $festius
  * @return calendarienhtml
  */
+include "../config.php";
 
 function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
 
     $muchotexto = "";
     $diessetmana = array("Lun","Mar","Mie", "Jue","Vie","Sab","Dom");
-    $dia1mesactual = date("w",mktime(0,0,0,$mesfuncio,date("t"),$anyfuncio));
+    $dia1mesactual = date("w",mktime(0,0,0,$mesfuncio,$diaactu,$anyfuncio));
     $diesmesactual = date("t", mktime(0,0,0, $mesfuncio ,10, $anyfuncio));
     $muchotexto = $muchotexto.('<table class="mes">
     <tr>
@@ -49,7 +50,7 @@ function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
         $muchotexto = $muchotexto.("<td></td>");
 
       } else {
-        if (($i % 7) == 0 || in_array($i-$dia1mesactual+1,$festius[$mesfuncio])) {
+        if (($i % 7) == 0 ) {
           $muchotexto = $muchotexto.('<td class="festiu">'.($i-$dia1mesactual+1).'</td>');
       } else if ($i-$dia1mesactual+1 == date("j")) {
         $muchotexto = $muchotexto.('<td class="avui">'.($i-$dia1mesactual+1).'</td>');
