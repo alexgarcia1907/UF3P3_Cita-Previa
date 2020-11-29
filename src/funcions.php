@@ -8,7 +8,7 @@
  * @param numsdiesfesta $festius
  * @return calendarienhtml
  */
-include "../config.php";
+include "config.php";
 
 function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
 
@@ -31,4 +31,4 @@ function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
       $muchotexto = $muchotexto.('</tr>');
 
       return $muchotexto;
-    }
+}

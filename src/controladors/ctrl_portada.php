@@ -1,17 +1,15 @@
 <?php
 
 function ctrl_portada($sesio,$usuario,$cita){
-  include "../funcions.php";
-  include "../config.php";
 
-      if ( !$sesio -> sesiousuari()) {
+     /* if ( !$sesio -> sesiousuari()) {
         header("Location: index.php?r=login");
         die();
-      }
+      }*/
 
     $citesusu = $cita -> getdades($usuario -> getid("test"));
     print_r($citesusu);
 
-    creaCalendari(11,2020,$festius);
+    echo(creaCalendari(11,2020,$festius));
 
 }
