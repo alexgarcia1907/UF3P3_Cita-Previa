@@ -26,5 +26,4 @@ function ctrl_portada($sesio,$usuario,$cita){
     $citesusu = $cita -> getdades($usuario -> getid("test"));
     print_r($citesusu);
     echo(creaCalendari($mesactual,$añoactual));
-
 }
