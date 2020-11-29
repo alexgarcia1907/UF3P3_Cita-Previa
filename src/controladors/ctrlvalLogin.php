@@ -8,7 +8,7 @@
  * @return void
  */
 
-function ctrlvalLogin($sessio, $parametre, $usuaris){
+function ctrlvalLogin($parametre, $sessio, $usuaris){
     if (isset($parametre["usuarilogin"]) && isset($parametre["contrasenyalogin"]) && $parametre["usuarilogin"] != "" && $parametre["contrasenyalogin"] != "") {
         $usuari = trim(filter_var($parametre["usuarilogin"], FILTER_SANITIZE_STRING));
         $contrasenya = trim(filter_var($parametre["contrasenyalogin"], FILTER_SANITIZE_STRING));
