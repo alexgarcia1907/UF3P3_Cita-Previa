@@ -21,9 +21,6 @@ function ctrlvalLogin($parametre, $sessio, $usuaris){
 
     $info = $usuaris -> getdades($usuari);
 
- 
-
-
     if (empty($info)){
         $errorlogin = "incorrecte";
 
