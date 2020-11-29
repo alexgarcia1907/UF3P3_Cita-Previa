@@ -9,8 +9,8 @@ $usuario = new Usuari;
 $cita = new cita;
 
 $sesio -> inciar();
-$usuario -> conecta();
-$cita -> conecta();
+$usuario -> conecta($bbdd,$host,$user,$pass);
+$cita -> conecta($bbdd,$host,$user,$pass);
 
 ctrl_portada($sesio,$usuario,$cita);
 

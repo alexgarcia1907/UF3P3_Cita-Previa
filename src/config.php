@@ -24,3 +24,14 @@ $diaactu = $diaactual -> format('D');
 
 $mesactu = new DateTime();
 $mesactual = $mesactu -> format ('m');
+
+//Param conexio bbdd
+
+$host = 'sikuu.ddns.net';
+$bbdd = 'uf3p3_cita_previa';
+$user = 'victor';
+$pass = '2001';
+
+//No estic regalant un usuari amb permissos de root
+//L'usuari victor ha estat creat expressament per aquesta
+//practica i nomes té access a aquesta base de dades
