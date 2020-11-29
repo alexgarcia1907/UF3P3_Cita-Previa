@@ -25,6 +25,8 @@ $diaactu = $diaactual -> format('D');
 $mesactu = new DateTime();
 $mesactual = $mesactu -> format ('m');
 
+
+$config["hash"] = ["cost" => 12];
 //Param conexio bbdd
 
 $host = 'sikuu.ddns.net';

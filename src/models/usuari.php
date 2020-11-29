@@ -14,11 +14,11 @@ class usuari {
     }
 
     public function afegir($dadesusuari) {
-        $query = $this ->sql -> prepare('insert into usuari (usuari,correu,contrasenya,rol) values (:usuari,:correu,:contrasenya);');
+        $query = $this ->sql -> prepare('insert into usuari (nom,correu,contrasenya) values (:nom,:correu,:contrasenya);');
 
-        $result = $query -> execute([':usuari' => $dadesusuari["usuari"],
+        $result = $query -> execute([':nom' => $dadesusuari["nom"],
         ':correu' => $dadesusuari["correu"],
-        ':password' => $dadesusuari["password"]]);
+        ':contrasenya' => $dadesusuari["contrasenya"]]);
     }
 
     public function getdades($nomusuari) {
