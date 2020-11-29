@@ -19,15 +19,17 @@ function ctrlvalLogin($parametre, $sessio, $usuaris){
 
     $info = $usuaris -> getdades($usuari);
 
+    print_r($info);
+
     if (empty($info)){
         include "../src/vistes/login.php";
         die();
     }else{
-        if($info["contrasenyalogin"] != $contrasenya){
+        if($info[0]["contrasenya"] != $contrasenya){
             include "../src/vistes/login.php";
             die();
         }else{
-        $sessio-> set(true, $usuari);
+        $sessio-> insertarusuari(true, $usuari);
         header("Location: index.php");
         }
     }

@@ -10,7 +10,5 @@ function ctrlLogin($sessio){
         include "../src/vistes/login.php";
     } else {
         header("Location: index.php");
-    }
-
-    
+    }  
 }
