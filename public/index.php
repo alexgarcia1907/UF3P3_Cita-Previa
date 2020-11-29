@@ -26,7 +26,6 @@ $modelusuari -> conecta($bbdd,$host,$user,$pass);
 $modelcita -> conecta($bbdd,$host,$user,$pass);
 $modelsessio -> inciar();
 
-
 if ($r == "login") {
     ctrlLogin($modelsessio);
 } else if ($r == "vlogin") {
