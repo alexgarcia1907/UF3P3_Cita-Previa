@@ -13,24 +13,30 @@ function ctrlvalLogin($parametre, $sessio, $usuaris){
         $usuari = trim(filter_var($parametre["usuarilogin"], FILTER_SANITIZE_STRING));
         $contrasenya = trim(filter_var($parametre["contrasenyalogin"], FILTER_SANITIZE_STRING));
     }else{
+        $errorlogin = "campsbuits";
+
         include "../src/vistes/login.php";
         die();
     }
 
     $info = $usuaris -> getdades($usuari);
 
-    print_r($info);
+ 
+
 
     if (empty($info)){
+        $errorlogin = "incorrecte";
+
         include "../src/vistes/login.php";
         die();
     }else{
-        if($info[0]["contrasenya"] != $contrasenya){
+        if(password_verify($contrasenya, $info[0]["contrasenya"])===true){
+            $sessio-> insertarusuari(true, $usuari);
+            header("Location: index.php");
+        }else{
+            $errorlogin = "incorrecte";
             include "../src/vistes/login.php";
             die();
-        }else{
-        $sessio-> insertarusuari(true, $usuari);
-        header("Location: index.php");
         }
     }
 }
