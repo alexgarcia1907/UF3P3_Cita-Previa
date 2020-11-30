@@ -8,11 +8,13 @@
  * @return void
  */
 
-function ctrlvalLogin($sessio, $parametre, $usuaris){
+function ctrlvalLogin($parametre, $sessio, $usuaris){
     if (isset($parametre["usuarilogin"]) && isset($parametre["contrasenyalogin"]) && $parametre["usuarilogin"] != "" && $parametre["contrasenyalogin"] != "") {
         $usuari = trim(filter_var($parametre["usuarilogin"], FILTER_SANITIZE_STRING));
         $contrasenya = trim(filter_var($parametre["contrasenyalogin"], FILTER_SANITIZE_STRING));
     }else{
+        $errorlogin = "campsbuits";
+
         include "../src/vistes/login.php";
         die();
     }
@@ -20,15 +22,18 @@ function ctrlvalLogin($sessio, $parametre, $usuaris){
     $info = $usuaris -> getdades($usuari);
 
     if (empty($info)){
+        $errorlogin = "incorrecte";
+
         include "../src/vistes/login.php";
         die();
     }else{
-        if($info["contrasenyalogin"] != $contrasenya){
+        if(password_verify($contrasenya, $info[0]["contrasenya"])===true){
+            $sessio-> insertarusuari(true, $usuari);
+            header("Location: index.php");
+        }else{
+            $errorlogin = "incorrecte";
             include "../src/vistes/login.php";
             die();
-        }else{
-        $sessio-> set(true, $usuari);
-        header("Location: index.php");
         }
     }
 }
