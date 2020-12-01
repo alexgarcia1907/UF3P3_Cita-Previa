@@ -10,10 +10,12 @@
  */
 include "config.php";
 
-function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
+function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array()) {
 
     $muchotexto = "";
     $diessetmana = array("Lun","Mar","Mie", "Jue","Vie","Sab","Dom");
+    $diaactualsetmana = date("N");
+
    
     $muchotexto = $muchotexto.('<table class="mes">
     <tr>
@@ -29,6 +31,12 @@ function creaCalendari($mesfuncio,$anyfuncio,$festius = array()) {
       }
 
       $muchotexto = $muchotexto.('</tr>');
+
+      $totalceldas = $diaactualsetmana-1 + $diesamostrar + (7-(($diesamostrar + $diaactualsetmana-1)%7));
+
+      for ($i = 0;$i < $totalceldas; $i++) {
+        
+      }
 
       return $muchotexto;
 }
