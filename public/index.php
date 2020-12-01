@@ -11,6 +11,7 @@ include "../src/funcions.php";
 include "../src/controladors/ctrlLogin.php";
 include "../src/controladors/ctrlvalLogin.php";
 include "../src/controladors/ctrl_portada.php";
+include "../src/controladors/ctrlvalRegister.php";
 
 if (isset($_REQUEST["r"])) {
     $r = $_REQUEST["r"];
