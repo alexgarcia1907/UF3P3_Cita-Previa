@@ -35,6 +35,9 @@ if ($r == "login") {
     ctrlRegistrar($_POST, $modelsessio, $modelusuari);
 } else if ($r == "vportada"){
     ctrlvalPortada($_POST, $modelsessio, $modelusuari, $modelcita);
-} else {
+}elseif ($r == "configadmin") {
+    ctrlConfigAdmin($modelusuari,$modelcita,$modelsessio);
+}
+else {
     ctrl_portada($modelsessio,$modelusuari,$modelcita);
 }
