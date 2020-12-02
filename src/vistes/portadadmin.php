@@ -13,11 +13,12 @@
     <form action="index.php" method="post">
         <button type="submit" class="confug">CONFIGURACIÓ</button>
         <input type="hidden" name="r" value="configadmin">
-        <div class= "calendari">
-            <?php
-            echo($calendar);
-            ?>
-      </div>
+        
     </form>
+    <div class= "calendari">
+        <?php
+            echo($calendar);
+        ?>
+      </div>
 </body>
 </html>
