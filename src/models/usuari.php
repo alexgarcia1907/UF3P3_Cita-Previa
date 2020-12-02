@@ -10,6 +10,7 @@ class usuari {
             $this->sql = new PDO($parambbdd, $user, $pass);
         } catch (PDOException $e) {
             die('Bro... this is shit --> ' . $e->getMessage());
+            echo("$nombd, $hostbd, $userbd, $passbd");
         }
     }
 

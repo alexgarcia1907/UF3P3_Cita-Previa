@@ -8,9 +8,9 @@
  * @param numsdiesfesta $festius
  * @return calendarienhtml
  */
-include "config.php";
 
 function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array()) {
+  include "config.php";
 
     $muchotexto = "";
     $diessetmana = array("Lun","Mar","Mie", "Jue","Vie","Sab","Dom");
@@ -33,10 +33,52 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       $muchotexto = $muchotexto.('</tr>');
 
       $totalceldas = $diaactualsetmana-1 + $diesamostrar + (7-(($diesamostrar + $diaactualsetmana-1)%7));
+      $celdasquellevo = 1;
+      $muchotexto = $muchotexto . "<tr>";
 
-      for ($i = 0;$i < $totalceldas; $i++) {
-        
+      for ($i = 0; $i < date("N") -1; $i++) {
+        $muchotexto = $muchotexto . '<td></td>';
+        $celdasquellevo++;
       }
+
+      for ($i = 0; $i < $diesamostrar; $i++) {
+        if($celdasquellevo % 7 == 7) {
+          $muchotexto = $muchotexto . '<tr>';
+        }
+
+          $muchotexto = $muchotexto . '<td>'. $diaactu.'</td>';
+          $diaactu++;
+
+        if ($celdasquellevo % 7 == 0) {
+          $muchotexto = $muchotexto . "</tr>";
+        }
+        $celdasquellevo++;
+      }
+      $celdasquellevo--;
+
+      for ($i = 0; 0 != ($celdasquellevo % 7); $i++) {
+        $muchotexto = $muchotexto . '<td></td>';
+        $celdasquellevo++;
+      }
+      
+      $muchotexto = $muchotexto . "</tr>";
+
+      /*for ($i = 1;$i <= $totalceldas; $i++) {
+        if($i % 7 == 7) {
+          $muchotexto = $muchotexto . '<tr>';
+        }
+        if ($i-1 >= $diaactu) {
+          $muchotexto = $muchotexto . '<td>'. $diaactu.'</td>';
+          $diaactu++;
+        } else {
+          $muchotexto = $muchotexto . '<td></td>';
+        }
+
+        if($i %7 == 0) {
+          $muchotexto = $muchotexto . '</tr>';
+        }
+        
+      }*/
 
       return $muchotexto;
 }
