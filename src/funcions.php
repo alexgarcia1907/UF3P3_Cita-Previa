@@ -45,8 +45,9 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
           $muchotexto = $muchotexto . '<tr class="white">';
         }
 
-          $muchotexto = $muchotexto . '<td><button class="white">'.$diaactu.'</button></td>';
-          $diaactu++;
+          $muchotexto = $muchotexto . '<td><button class="white">'.$diaactual->format("M j").'</button></td>';
+
+          $diaactual->modify("+1 day");
 
         if ($celdasquellevo % 7 == 6) {
           $muchotexto = $muchotexto . "</tr>";
