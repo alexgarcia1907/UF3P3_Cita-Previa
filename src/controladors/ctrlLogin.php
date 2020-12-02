@@ -7,9 +7,8 @@
  */
 function ctrlLogin($sessio){
     if(!$sessio -> sesiousuari()){
-        header("Location: index.php?r=login");
-        die();
-    }
-
-    include "../src/vistes/portada.php";
+        include "../src/vistes/login.php";
+    } else {
+        header("Location: index.php");
+    }  
 }
