@@ -101,3 +101,35 @@ body{
     -moz-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
 }
+
+/*Calendari*/
+.calendari{
+    padding-top: 150px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.mes{
+    width: 100%;
+    text-align: center;
+}
+.setmana{
+    background-color:  #232526;
+    color: white;
+}
+
+.mes tr{
+    height: 50px;
+    border: 2px solid  #232526;
+    border-collapse: collapse;
+}
+
+.mesu{
+    background-color: #df5646;
+}
+
+.white{
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
