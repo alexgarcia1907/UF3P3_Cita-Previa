@@ -10,7 +10,7 @@
  */
 
 function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array()) {
-  include "config.php";
+  include "../src/config.php";
 
     $muchotexto = "";
     $diessetmana = array("Lun","Mar","Mie", "Jue","Vie","Sab","Dom");

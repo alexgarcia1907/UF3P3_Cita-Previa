@@ -1,7 +1,7 @@
 <?php
 
 function ctrl_portada($sesio,$usuario,$cita){
-
+  include "../src/config.php";
   if (!$sesio -> sesiousuari()) {
         header("Location: index.php?r=login");
         die();
@@ -9,6 +9,7 @@ function ctrl_portada($sesio,$usuario,$cita){
 
     $citesusu = $cita -> getdades($usuario -> getid("test"));
 
-    echo(creaCalendari(11,2020,10));
+    $calendar = creaCalendari($mesactual, $añoactu, 20, $festius);
+    include "../src/vistes/portadadmin.php";
 
 }
