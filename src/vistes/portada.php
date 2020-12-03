@@ -27,8 +27,10 @@
                 <div class="modal-body">
                 <form action="index.php?r=vportada" method="post">
                     <div class="formulari">
+                        <p>L'horari disponible és de 9:00 a 13:00.</p>
+                        <p>Per evitar l'aglomeració de clients, les reserves disponibles seran cada 30 minuts.</p>
                         <label>Escull l'hora:</label>
-                        <input type="time">
+                        <input type="time" step="1800" min="09:00" max="13:00">
                         <label>Explica'ns alguna cosa:</label>
                         <input type="text">
                         <div class="opcions">
