@@ -9,7 +9,8 @@ function ctrl_portada($sesio,$usuario,$cita){
 
     $citesusu = $cita -> getdades($usuario -> getid("test"));
 
-    $calendar = creaCalendari($mesactual, $añoactu, 20, $festius);
-    include "../src/vistes/portadadmin.php";
+    $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
+    include "../src/vistes/portada.php";
 
+    
 }

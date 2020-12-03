@@ -11,20 +11,19 @@
 
 function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array()) {
   include "../src/config.php";
-
-    $muchotexto = "";
+  $muchotexto = "";
     $diessetmana = array("Lun","Mar","Mie", "Jue","Vie","Sab","Dom");
     $diaactualsetmana = date("N");
 
    
     $muchotexto = $muchotexto.('<table class="mes">
-    <tr>
+    <tr class="mesu">
       <th colspan="7">');
       $muchotexto = $muchotexto.date("F",mktime(0,0,0,$mesfuncio,10));
 
       $muchotexto = $muchotexto.('</th>
     </tr>
-    <tr>');
+    <tr class="setmana">');
 
       for ($i=0;$i<7;$i++) {
         $muchotexto = $muchotexto.("<td>").$diessetmana[$i].("</td>");
@@ -33,8 +32,8 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       $muchotexto = $muchotexto.('</tr>');
 
       $totalceldas = $diaactualsetmana-1 + $diesamostrar + (7-(($diesamostrar + $diaactualsetmana-1)%7));
-      $celdasquellevo = 1;
-      $muchotexto = $muchotexto . "<tr>";
+      $celdasquellevo = 0;
+      $muchotexto = $muchotexto . '<tr class="white">';
 
       for ($i = 0; $i < date("N") -1; $i++) {
         $muchotexto = $muchotexto . '<td></td>';
@@ -42,19 +41,19 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       }
 
       for ($i = 0; $i < $diesamostrar; $i++) {
-        if($celdasquellevo % 7 == 7) {
-          $muchotexto = $muchotexto . '<tr>';
+        if($celdasquellevo % 7 == 0) {
+          $muchotexto = $muchotexto . '<tr class="white">';
         }
 
-          $muchotexto = $muchotexto . '<td>'. $diaactu.'</td>';
-          $diaactu++;
+          $muchotexto = $muchotexto . '<td><button class="white" data-toggle="modal" data-target="#exampleModal">'.$diaactual->format("M j").'</button></td>';
 
-        if ($celdasquellevo % 7 == 0) {
+          $diaactual->modify("+1 day");
+
+        if ($celdasquellevo % 7 == 6) {
           $muchotexto = $muchotexto . "</tr>";
         }
         $celdasquellevo++;
       }
-      $celdasquellevo--;
 
       for ($i = 0; 0 != ($celdasquellevo % 7); $i++) {
         $muchotexto = $muchotexto . '<td></td>';
