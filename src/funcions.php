@@ -45,7 +45,7 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
           $muchotexto = $muchotexto . '<tr class="white">';
         }
 
-          $muchotexto = $muchotexto . '<td><button class="white">'.$diaactual->format("M j").'</button></td>';
+          $muchotexto = $muchotexto . '<td><button class="white" data-toggle="modal" data-target="#exampleModal">'.$diaactual->format("M j").'</button></td>';
 
           $diaactual->modify("+1 day");
 
