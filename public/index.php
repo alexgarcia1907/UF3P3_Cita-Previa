@@ -1,6 +1,4 @@
 <?php
-
-
 include "../src/models/sessio.php";
 include "../src/models/usuari.php";
 include "../src/models/cita.php";
