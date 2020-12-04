@@ -34,7 +34,7 @@ if ($r == "login") {
 } else if ($r == "vportada"){
     ctrlvalPortada($_POST, $modelsessio, $modelusuari, $modelcita);
 }elseif ($r == "configadmin") {
-    ctrlConfigAdmin($modelusuari,$modelcita,$modelsessio);
+    ctrlConfigAdmin($modelusuari,$modelsessio);
 }
 else {
     ctrl_portada($modelsessio,$modelusuari,$modelcita);

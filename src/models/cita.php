@@ -35,4 +35,15 @@ class cita {
         $query =$this->sql->prepare('delete from cita where idusuari =  :idusuari;');
         $result = $query->execute([':idusuari' => $idusuari]);
     }
+
+    public function obtenirtot(){
+        $dades = [];
+        $query = $this->sql->prepare('select u.nom,c.data,c.comentari from cita c join usuari u where c.idusuari = u.id;');
+        $result = $query->execute();
+
+        while ($value = $query -> fetch(\PDO::FETCH_ASSOC)) {
+            $dades[] = $value;
+        }
+        return $dades;
+    }
 }
