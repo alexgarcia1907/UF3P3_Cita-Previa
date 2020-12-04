@@ -16,6 +16,10 @@ function ctrlConfigAdmin($usuari,$sesio){
     }
     else{
         $todo = $cita -> obtenirtot();
+        $todo = "";
+        for ($i=0; $i < sizeof($todo); $i++) { 
+            $todo = $todo . ('<table>');
+        }
     
         include "../vistes/portadaconfig.php";
     }
