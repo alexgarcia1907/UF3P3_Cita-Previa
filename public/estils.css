@@ -171,3 +171,25 @@ body{
     color: white;
     border: none;
 }
+
+/*Portadaconfig*/
+.conf{
+    padding: 30px;
+    margin-top: 50px;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
+}
+
+.header-config{
+    width: 100%;
+    border-radius: 5px;
+    background-color: #df5646;
+    color: white;
+}
+
+.confu{
+    margin-bottom: 20px;
+}
