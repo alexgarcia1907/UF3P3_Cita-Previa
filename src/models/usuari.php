@@ -43,6 +43,6 @@ class usuari {
     public function getrol($nomusuari) {
         $query =$this->sql->prepare('select rol from usuari where nom = :nom;');
         $result = $query->execute([':nom' => $nomusuari]);
-        return $query->fetch(\PDO::FETCH_ASSOC);
+        return $query->fetch(\PDO::FETCH_ASSOC)["rol"];
     }
 }
