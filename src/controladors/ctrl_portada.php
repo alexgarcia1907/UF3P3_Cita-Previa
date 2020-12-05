@@ -59,6 +59,7 @@ function ctrl_portada($sesio,$usuario,$cita){
         </div>
     </div>';
     }
+  
     include "../src/vistes/portada.php";
     
 }

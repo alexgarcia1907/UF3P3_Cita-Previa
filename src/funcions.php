@@ -81,3 +81,25 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
 
       return $muchotexto;
 }
+
+
+function mostrardatos($cita){
+  $datos = $cita -> obtenirtot();
+  $todo = "";
+
+  $todo = $todo . ('<table>
+            <tr>
+            <th>');
+            $todo = $todo . ('Nom');
+            $todo = $todo . ('</th> <th>');
+            $todo = $todo . ('Dia i hora');
+            $todo = $todo . ('</th> <th>');
+            $todo = $todo . ('Comentari');
+            $todo = $todo . ('</th> </tr>');
+
+            foreach ($datos as $fila){
+                $todo = $todo . ('<tr><td>'.$fila["nom"].'</td><td>'.$fila["data"].'</td><td>'.$fila["comentari"].'</td></tr>');
+            }
+            $todo = $todo . ('</table>');
+            return $todo;
+}
