@@ -16,16 +16,15 @@ class cita {
         $query = $this ->sql -> prepare('insert into cita
         (idusuari,data,comentari) values (:idusuari,:data,:comentari);');
 
-        $result = $query -> execute([':idusuari' => $dadescita["idusuari"],
-        ':data' => $dadesusuari["data"],
+        $result = $query -> execute([':idusuari' => $dadescita["idusuari"],':data' => $dadesusuari["data"],
         ':comentari' => $dadesusuari["comentari"]]);
     }
 
-    public function getdades($idusuari) {
+    public function getdades($idusuari, $data) {
         $dades = [];
-        $query =$this->sql->prepare('select * from cita where idusuari =  :idusuari;');
-        $result = $query->execute([':idusuari' => $idusuari["id"]]);
-        while ($value =$query-> fetch(\PDO::FETCH_ASSOC)) {
+        $query = $this->sql->prepare('select * from cita where idusuari = :idusuari and data between :data and  :data2;');
+        $result = $query->execute([':idusuari' => $idusuari, ':data' => $data." 00:00:00", ':data2' => $data." 23:59:59"]);
+        while ($value = $query -> fetch(\PDO::FETCH_ASSOC)) {
             $dades[] = $value;
         }
         return $dades;
