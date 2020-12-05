@@ -13,6 +13,7 @@
     <div class= "calen">
         <?php
             echo($calendar);
+            echo($modals);
         ?>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

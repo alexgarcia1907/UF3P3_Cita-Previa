@@ -7,14 +7,10 @@ function ctrl_portada($sesio,$usuario,$cita){
         die();
       }
 
-    $citesusu = $cita -> getdades($usuario -> getid("test"));
-
-    $todo = $cita -> obtenirtot();
-
-    print_r($todo);
-
     $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
 
+    $data = new DateTime();
+    $modals = "";
     for ($i = 0; $i < 60; $i++) {
 
     $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -28,7 +24,15 @@ function ctrl_portada($sesio,$usuario,$cita){
                     </div>
                 <div class="modal-body">
 
-                <div>'.citesdia($cita, $data, $sesio).'
+                <div>';
+                    $citesara = citesdia($cita, $data, $sesio, $usuario);
+                    foreach($citesara as $cita1) {
+                        $modals = $modals.$cita1["data"].$cita1["comentari"];
+                        
+                        
+                    }
+
+                $modals = $modals.'
 
                 </div>
 
@@ -59,6 +63,13 @@ function ctrl_portada($sesio,$usuario,$cita){
     
 }
 
-function citesdia($modelcita, $data, $modelsessio) {
+function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 
+    $dataparam = ($data->format("Y-m-d"));
+    $data->modify("+1 day");
+    //echo($dataparam);
+   // echo($modelusuari->getid($modelsessio->obtenirnom()));
+    $cites = $modelcita->getdades($modelusuari->getid($modelsessio->obtenirnom()),$dataparam);
+        
+    return $cites;
 }

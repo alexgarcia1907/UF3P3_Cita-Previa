@@ -37,7 +37,7 @@ class usuari {
     public function getid($nomusuari){
         $query =$this->sql->prepare('select id from usuari where nom = :nom;');
         $result = $query->execute([':nom' => $nomusuari]);
-        return $query->fetch(\PDO::FETCH_ASSOC);
+        return $query->fetch(\PDO::FETCH_ASSOC)["id"];
     }
 
     public function getrol($nomusuari) {
