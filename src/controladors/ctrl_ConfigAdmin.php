@@ -6,7 +6,7 @@
  * @param [type] $usuari
  * @param [type] $sesio
  */
-function ctrlConfigAdmin($usuari,$sesio){
+function ctrlConfigAdmin($usuari,$sesio,$cita){
 
     $rol = $usuari -> getrol($sesio->obtenirnom());
 
@@ -15,13 +15,8 @@ function ctrlConfigAdmin($usuari,$sesio){
         die();
     }
     else{
-        $todo = $cita -> obtenirtot();
-        $todo = "";
-        for ($i=0; $i < sizeof($todo); $i++) { 
-            $todo = $todo . ('<table>');
+        $datos = mostrardatos($cita);  
+        include "../vistes/portadaconfig.php";
         }
     
-        include "../vistes/portadaconfig.php";
     }
-}
-
