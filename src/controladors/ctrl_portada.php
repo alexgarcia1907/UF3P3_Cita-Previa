@@ -1,10 +1,14 @@
 <?php
 
-function ctrl_portada($sesio,$usuario,$cita){
+function ctrl_portada($sesio,$usuario,$cita,$error = ""){
   include "../src/config.php";
   if (!$sesio -> sesiousuari()) {
         header("Location: index.php?r=login");
         die();
+    }
+
+    if($error == 1){
+        echo("<div class=alert>Aquesta hora ja esta reservada.</div>" );
     }
 
     $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
@@ -40,14 +44,20 @@ function ctrl_portada($sesio,$usuario,$cita){
         
                         </div>
         
-                        <form action="index.php?r=vportada" method="post">
+                        <form action="index.php" method="post">
                             <div class="formulari">
                                 <p>L\'horari disponible és de 9:00 a 13:00.</p>
                                 <p>Per evitar l\'aglomeració de clients, les reserves disponibles seran cada 30 minuts.</p>
                                 <label>Escull l\'hora:</label>
-                                <input type="time" step="1800" min="09:00" max="13:00">
+                                <input required name="hora" type="time" step="1800" min="09:00" max="13:00">
+                                <input name="dia" hidden value="';
+                                $data->modify("-1 day");
+                                $modals = $modals .$data->format("Y-m-d") ;
+                                $data->modify("+1 day");
+                                $modals = $modals.'">
+                                <input name="r" hidden value="vportada">
                                 <label>Explica\'ns alguna cosa:</label>
-                                <input type="text">
+                                <input name="coment" type="text">
                                 <div class="opcions">
                                 <button type="submit" class="btn btn-dark">Reserva</button>
                                 </div> 
@@ -118,15 +128,13 @@ function ctrl_portada($sesio,$usuario,$cita){
             include "../src/vistes/portadadmin.php";
 
     }
-
-
-    
 }
 
 function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 
     $dataparam = ($data->format("Y-m-d"));
     $data->modify("+1 day");
+
     //echo($dataparam);
    // echo($modelusuari->getid($modelsessio->obtenirnom()));
     $cites = $modelcita->getdades($modelusuari->getid($modelsessio->obtenirnom()),$dataparam);

@@ -16,8 +16,10 @@ class cita {
         $query = $this ->sql -> prepare('insert into cita
         (idusuari,data,comentari) values (:idusuari,:data,:comentari);');
 
-        $result = $query -> execute([':idusuari' => $dadescita["idusuari"],':data' => $dadesusuari["data"],
-        ':comentari' => $dadesusuari["comentari"]]);
+        $result = $query -> execute([':idusuari' => $dadescita["idusuari"],':data' => $dadescita["data"],
+        ':comentari' => $dadescita["comentari"]]);
+
+        return $result;
     }
 
     public function getdades($idusuari, $data) {
