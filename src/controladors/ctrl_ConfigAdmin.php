@@ -16,7 +16,7 @@ function ctrlConfigAdmin($usuari,$sesio,$cita){
     }
     else{
         $datos = mostrardatos($cita);  
-        include "../vistes/portadaconfig.php";
+        include "../src/vistes/portadaconfig.php";
         }
     
     }

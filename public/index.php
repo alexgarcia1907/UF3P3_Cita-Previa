@@ -10,6 +10,9 @@ include "../src/controladors/ctrlLogin.php";
 include "../src/controladors/ctrlvalLogin.php";
 include "../src/controladors/ctrl_portada.php";
 include "../src/controladors/ctrlvalRegister.php";
+include "../src/controladors/ctrl_ConfigAdmin.php";
+include "../src/controladors/ctrlvalPortada.php";
+
 
 if (isset($_REQUEST["r"])) {
     $r = $_REQUEST["r"];
@@ -34,8 +37,8 @@ if ($r == "login") {
 } else if ($r == "vportada"){
     ctrlvalPortada($_POST, $modelsessio, $modelusuari, $modelcita);
 }elseif ($r == "configadmin") {
-    ctrlConfigAdmin($modelusuari,$modelsessio);
+    ctrlConfigAdmin($modelusuari,$modelsessio,$modelcita);
 }
 else {
-    ctrl_portada($modelsessio,$modelusuari,$modelcita);
+    ctrl_portada($modelsessio,$modelusuari,$modelcita,$_GET["error"]);
 }
