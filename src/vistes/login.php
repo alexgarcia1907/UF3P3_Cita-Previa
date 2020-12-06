@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../../public/estils.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="../public/estils.css" rel="stylesheet" type="text/css" media="all"/>
     <title>Entra</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
                 <div class="login">
                     <h5 class="font-weight-bold">Registre</h5>
                         <div class="formulari">
-                            <form action="login.php" method="post">
+                            <form action="index.php?r=register" method="post">
                                 <label>Introdueix el teu email:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -53,20 +53,20 @@
                 <div class="registre">
                     <h5 class="font-weight-bold">Inici</h5>
                     <div class="formulari">
-                        <form action="index.php">
+                        <form action="index.php?r=vlogin" method="post">
                         <label>Introdueix el teu usuari:</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
                             </div>
-                            <input name=usuarilogin type="text" class="form-control" placeholder="Usuari" aria-label="Usuari" aria-describedby="basic-addon1">
+                            <input name="usuarilogin" type="text" class="form-control" placeholder="Usuari" aria-label="Usuari" aria-describedby="basic-addon1">
                         </div>
                         <label>Introdueix la contrasenya:</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                             </div>
-                            <input name="contrasenyalogin" type="text" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
+                            <input name="contrasenyalogin" type="password" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
