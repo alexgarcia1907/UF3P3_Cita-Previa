@@ -174,22 +174,33 @@ body{
 
 /*Portadaconfig*/
 .conf{
-    padding: 30px;
     margin-top: 50px;
     background-color: white;
     border-radius: 10px;
+    margin-bottom: 50px;
     -webkit-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
 }
 
 .header-config{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-top: 10px;
     width: 100%;
-    border-radius: 5px;
+    text-align: center;
+    height: 50px;
     background-color: #df5646;
     color: white;
+}
+.body-config{
+    width: 100%;
+    padding: 30px;
+    text-align: center
 }
 
 .confu{
     margin-bottom: 20px;
 }
+
+

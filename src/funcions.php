@@ -93,19 +93,29 @@ function mostrardatos($cita){
   $datos = $cita -> obtenirtot();
   $todo = "";
 
-  $todo = $todo . ('<table>
+  $todo = $todo . ('<div class="row confu">
+  <div class="header-config">
+  <h5>Reserves</h5>
+  </div>
+  <div class="body-config">
+  <table class="table table-striped table-hover">
+  
             <tr>
             <th>');
-            $todo = $todo . ('Nom');
+            $todo = $todo . ('Usuari');
             $todo = $todo . ('</th> <th>');
-            $todo = $todo . ('Dia i hora');
+            $todo = $todo . ('Data/Hora');
             $todo = $todo . ('</th> <th>');
             $todo = $todo . ('Comentari');
-            $todo = $todo . ('</th> </tr>');
+            $todo = $todo . ('</th><th></th></tr>');
 
             foreach ($datos as $fila){
-                $todo = $todo . ('<tr><td>'.$fila["nom"].'</td><td>'.$fila["data"].'</td><td>'.$fila["comentari"].'</td></tr>');
+                $todo = $todo . ('<tr><td>'.$fila["nom"].'</td><td>'.$fila["data"].'</td><td>'.$fila["comentari"].'</td><td><button type="submit" class="btn btn-dark">Elimina</button></td></tr>');
+                
             }
+            
             $todo = $todo . ('</table>');
+            $todo = $todo . ('</div>');
+            $todo = $todo . ('</div>');
             return $todo;
 }
