@@ -36,4 +36,5 @@ $pass = '2001';
 
 //No estic regalant un usuari amb permissos de root
 //L'usuari victor ha estat creat expressament per aquesta
+//Que te calles tonto
 //practica i nomes té access a aquesta base de dades
