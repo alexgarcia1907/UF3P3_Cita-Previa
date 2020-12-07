@@ -7,16 +7,13 @@
  * @param [type] $sesio
  */
 function ctrlConfigAdmin($usuari,$sesio,$cita){
-
     $rol = $usuari -> getrol($sesio->obtenirnom());
 
     if ($rol != "admin") {
         header("Location: index.php");
         die();
-    }
-    else{
-        $datos = mostrardatos($cita);  
+    }else{
+        $datos = mostrardatos($cita);
         include "../src/vistes/portadaconfig.php";
-        }
-    
     }
+}
