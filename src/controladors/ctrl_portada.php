@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Controlador per mostrar la portada amb totes les dades necessaries.
+ *
+ * @param [$_SESSION] $sesio
+ * @param [Model usuari] $usuario
+ * @param [Model cita] $cita
+ * @param [Dies a mostrar] $diesdeportada
+ * @param [Array festius] $festius
+ * @param string $error
+ * @return void
+ */
 function ctrl_portada($sesio,$usuario,$cita,$diesdeportada,$festius,$error = ""){
   if (!$sesio -> sesiousuari()) {
         header("Location: index.php?r=login");

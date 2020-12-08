@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controlador per eliminar una cita des de configuracio de l'admin.
+ *
+ * @param [$_POST] $post
+ * @param [Model cita] $cita
+ * @param [Model usuari] $usuari
+ * @param [$_SESSION] $sesio
+ * @return void
+ */
 function ctrlEliminaCita($post, $cita, $usuari, $sesio) {
 
     $rol = $usuari -> getrol($sesio->obtenirnom());
