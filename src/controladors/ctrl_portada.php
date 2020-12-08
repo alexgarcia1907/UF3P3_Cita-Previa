@@ -11,7 +11,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
         echo("<div class=alert>Aquesta hora ja esta reservada.</div>" );
     }
 
-    $calendar = creaCalendari($mesactual, $añoactu, 20, $festius);
+    $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
 
     $data = new DateTime();    
 
@@ -20,7 +20,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
     $rol = $usuario -> getrol($sesio->obtenirnom());
 
     if ($rol != "admin") {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 60; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -92,7 +92,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
             include "../src/vistes/portada.php";
             
     } else {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 60; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
