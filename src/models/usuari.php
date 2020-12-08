@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Model per controlar els usuaris.
+ */
 class usuari {
     public function conecta($nombd,$hostbd,$userbd,$passbd) {
         $parambbdd = "mysql:dbname=$nombd;host=$hostbd;";

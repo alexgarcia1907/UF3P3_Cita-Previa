@@ -34,11 +34,6 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       $totalceldas = $diaactualsetmana-1 + $diesamostrar + (7-(($diesamostrar + $diaactualsetmana-1)%7));
       $celdasquellevo = 0;
 
-      /*if (date("N") != 1) {
-        $muchotexto = $muchotexto . '<tr class="white">';
-
-      }*/
-
       for ($i = 0; $i < date("N") -1; $i++) {
         $muchotexto = $muchotexto . '<tr class="white">';
 
@@ -69,27 +64,16 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       $muchotexto = $muchotexto . "</tr>";
       $muchotexto = $muchotexto . "</table>";
 
-      /*for ($i = 1;$i <= $totalceldas; $i++) {
-        if($i % 7 == 7) {
-          $muchotexto = $muchotexto . '<tr>';
-        }
-        if ($i-1 >= $diaactu) {
-          $muchotexto = $muchotexto . '<td>'. $diaactu.'</td>';
-          $diaactu++;
-        } else {
-          $muchotexto = $muchotexto . '<td></td>';
-        }
-
-        if($i %7 == 0) {
-          $muchotexto = $muchotexto . '</tr>';
-        }
-        
-      }*/
-
       return $muchotexto;
 }
 
 
+/**
+ * Funció per mostrar una taula amb totes les cites que hi ha a la BDD, mostrar en l'apartat de configuració de l'admin.
+ *
+ * @param [Model cita] $cita
+ * @return void $todo
+ */
 function mostrardatos($cita){
   $datos = $cita -> obtenirtot();
   $todo = "";
