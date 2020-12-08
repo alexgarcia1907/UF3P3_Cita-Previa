@@ -15,16 +15,7 @@ $festius = array(
     12 => array(8,25)
 );
 
-$añoactu = new DateTime();
-$añoactual = $añoactu -> format('Y');
-
-$diaactual = new DateTime();
-$diaactu =  $diaactual -> format('j');
-
-
-$mesactu = new DateTime();
-$mesactual = $mesactu -> format ('n');
-
+$diescalendari = 30;
 
 $config["hash"] = ["cost" => 12];
 //Param conexio bbdd
@@ -36,5 +27,4 @@ $pass = '2001';
 
 //No estic regalant un usuari amb permissos de root
 //L'usuari victor ha estat creat expressament per aquesta
-//Que te calles tonto
 //practica i nomes té access a aquesta base de dades

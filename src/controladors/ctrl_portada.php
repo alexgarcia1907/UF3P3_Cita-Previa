@@ -1,7 +1,6 @@
 <?php
 
-function ctrl_portada($sesio,$usuario,$cita,$error = ""){
-  include "../src/config.php";
+function ctrl_portada($sesio,$usuario,$cita,$diesdeportada,$festius,$error = ""){
   if (!$sesio -> sesiousuari()) {
         header("Location: index.php?r=login");
         die();
@@ -11,7 +10,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
         echo("<div class=alert>Aquesta hora ja esta reservada.</div>" );
     }
 
-    $calendar = creaCalendari($mesactual, $añoactu, 6, $festius);
+    $calendar = creaCalendari(new DateTime(), $diesdeportada, $festius);
 
     $data = new DateTime();    
 
@@ -20,7 +19,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
     $rol = $usuario -> getrol($sesio->obtenirnom());
 
     if ($rol != "admin") {
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < $diesdeportada; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -35,15 +34,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                         <div class="reservs">
                             <h5>Les meves reserves</h5>';
                             $citesara = citesdia($cita, $data, $sesio, $usuario);
-                            $modals = $modals.('<table class="table table-striped table-hover">');
-                            $modals = $modals.('<tr>');
-                            $modals = $modals.('<th>');
-                            $modals = $modals.('Data/Hora');
-                            $modals = $modals.('</th>');
-                            $modals = $modals.('<th>');
-                            $modals = $modals.('Comentari');
-                            $modals = $modals.('</th>');
-                            $modals = $modals.('</tr>');
+                            $modals = $modals.('<table class="table table-striped table-hover"><tr><th>Data/Hora</th><th>Comentari</th></tr>');
                             foreach($citesara as $cita1) {
                                 $modals = $modals.('<tr><td>'.explode(" ",$cita1["data"])[1].'</td><td>'.$cita1["comentari"].'</td></tr>');       
                             }
@@ -59,24 +50,21 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                                 <label>Escull l\'hora:</label>
 
                                 <select type="select" name="hora">';
-                                    $hora = new DateTime();
-                                    $hora->setTime(9,0,0);
+                                    $data->setTime(9,0,0);
                                     for ($j = 0; $j < 9; $j++) {
-                                        $veras = existeixlahora($data->format("Y-m-d")." ".$hora->format("H:i:s"), $cita);
+                                        $veras = existeixlahora($data->format("Y-m-d")." ".$data->format("H:i:s"), $cita);
                                         if ($veras) {
-                                            $modals = $modals . '<option disabled>'. $hora -> format("H:i").' - (No disponible)</option>';
+                                            $modals = $modals . '<option disabled>'. $data -> format("H:i").' - (No disponible)</option>';
                                         } else {
-                                            $modals = $modals .'<option>'. $hora -> format("H:i").'</option>';
+                                            $modals = $modals .'<option>'. $data -> format("H:i").'</option>';
                                         }
                                         
-                                        $hora->modify("+30 minutes");
+                                        $data->modify("+30 minutes");
                                     }
 
                                 $modals = $modals .'</select><br>
 
-                                <input name="dia" hidden value="';
-                                
-                                $modals = $modals .$data->format("Y-m-d").'">
+                                <input name="dia" hidden value="'.$data->format("Y-m-d").'">
                                 <input name="r" hidden value="vportada">
                                 <label>Explica\'ns alguna cosa:</label>
                                 <input name="coment" type="text">
@@ -101,7 +89,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
             include "../src/vistes/portada.php";
             
     } else {
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < $diesdeportada; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -117,18 +105,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                         <div class="reservs">
                             <h5>Les meves reserves</h5>';
                             $citesara = citesdiaadmin($cita, $data, $sesio, $usuario);
-                            $modals = $modals.('<table class="table table-striped table-hover">');
-                            $modals = $modals.('<tr>');
-                            $modals = $modals.('<th>');
-                            $modals = $modals.('Usuari');
-                            $modals = $modals.('</th>');
-                            $modals = $modals.('<th>');
-                            $modals = $modals.('Data/Hora');
-                            $modals = $modals.('</th>');
-                            $modals = $modals.('<th>');
-                            $modals = $modals.('Comentari');
-                            $modals = $modals.('</th>');
-                            $modals = $modals.('</tr>');
+                            $modals = $modals.('<table class="table table-striped table-hover"><tr><th>Usuari</th><th>Data/Hora</th><th>Comentari</th></tr>');
                             foreach($citesara as $cita1) {
                                 $modals = $modals.('<tr><td>'.$cita1["nom"].'</td><td>'.explode(" ",$cita1["data"])[1].'</td><td>'.$cita1["comentari"].'</td></tr>');       
                             }
@@ -143,24 +120,21 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                                 <p>Per evitar l\'aglomeració de clients, les reserves disponibles seran cada 30 minuts.</p>
                                 <label>Escull l\'hora:</label>
                                 <select type="select" name="hora">';
-                                    $hora = new DateTime();
-                                    $hora->setTime(9,0,0);
+                                    $data->setTime(9,0,0);
                                     for ($j = 0; $j < 9; $j++) {
-                                        $veras = existeixlahora($data->format("Y-m-d")." ".$hora->format("H:i:s"), $cita);
+                                        $veras = existeixlahora($data->format("Y-m-d")." ".$data->format("H:i:s"), $cita);
                                         if ($veras) {
-                                            $modals = $modals . '<option disabled>'. $hora -> format("H:i").' - (No disponible)</option>';
+                                            $modals = $modals . '<option disabled>'. $data -> format("H:i").' - (No disponible)</option>';
                                         } else {
-                                            $modals = $modals .'<option>'. $hora -> format("H:i").'</option>';
+                                            $modals = $modals .'<option>'. $data -> format("H:i").'</option>';
                                         }
                                         
-                                        $hora->modify("+30 minutes");
+                                        $data->modify("+30 minutes");
                                     }
 
                                 $modals = $modals .'</select><br>
 
-                                <input name="dia" hidden value="';
-                                
-                                $modals = $modals .$data->format("Y-m-d").'">
+                                <input name="dia" hidden value="'.$data->format("Y-m-d").'">
                                 <input name="r" hidden value="vportada">
                                 <label>Explica\'ns alguna cosa:</label>
                                 <input name="coment" type="text">
@@ -180,21 +154,15 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
             </div>';
             $data->modify("+1 day");
 
-            
             }
           
-            include "../src/vistes/portadadmin.php";
-
+        include "../src/vistes/portadadmin.php";
     }
 }
 
 function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 
     $dataparam = ($data->format("Y-m-d"));
-    //$data->modify("+1 day");
-
-    //echo($dataparam);
-   // echo($modelusuari->getid($modelsessio->obtenirnom()));
     $cites = $modelcita->getdades($modelusuari->getid($modelsessio->obtenirnom()),$dataparam);
         
     return $cites;
@@ -202,14 +170,10 @@ function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 
 function citesdiaadmin($modelcita, $data, $modelsessio,$modelusuari) {
     $dataparam = ($data->format("Y-m-d"));
-    //echo($dataparam);
-    //echo($modelusuari->getid($modelsessio->obtenirnom()));
     $cites = $modelcita->obtenircitesundia($dataparam);
     return $cites;
 }
 
 function existeixlahora($diahora, $modelcita) {
-//echo($diahora);
-
-return $modelcita-> existeixlacita($diahora);
+    return $modelcita-> existeixlacita($diahora);
 }
