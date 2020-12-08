@@ -232,4 +232,11 @@ body{
     margin-bottom: 20px;
 }
 
-
+.bg-ple {
+    background-color: #df5646;
+}
+.bg-ple button {
+    background-color: #df5646;
+    color:white;
+    font-weight: bold;
+}
