@@ -68,10 +68,6 @@
                             </div>
                             <input name="contrasenyalogin" type="password" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Recorda'm</label>
-                        </div>
                         <button name="envialogin" type="submit" class="enviem btn btn-dark">Entra</button>
                         </form>
                     </div>

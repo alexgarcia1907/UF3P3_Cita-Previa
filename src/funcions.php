@@ -67,6 +67,7 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       }
       
       $muchotexto = $muchotexto . "</tr>";
+      $muchotexto = $muchotexto . "</table>";
 
       /*for ($i = 1;$i <= $totalceldas; $i++) {
         if($i % 7 == 7) {

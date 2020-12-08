@@ -11,7 +11,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
         echo("<div class=alert>Aquesta hora ja esta reservada.</div>" );
     }
 
-    $calendar = creaCalendari($mesactual, $añoactu, 20, $festius);
+    $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
 
     $data = new DateTime();    
 
@@ -20,7 +20,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
     $rol = $usuario -> getrol($sesio->obtenirnom());
 
     if ($rol != "admin") {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 60; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -32,14 +32,23 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                             </button>
                             </div>
                         <div class="modal-body">
-        
-                        <div>';
+                        <div class="reservs">
+                            <h5>Les meves reserves</h5>';
                             $citesara = citesdia($cita, $data, $sesio, $usuario);
+                            $modals = $modals.('<table class="table table-striped table-hover">');
+                            $modals = $modals.('<tr>');
+                            $modals = $modals.('<th>');
+                            $modals = $modals.('Data/Hora');
+                            $modals = $modals.('</th>');
+                            $modals = $modals.('<th>');
+                            $modals = $modals.('Comentari');
+                            $modals = $modals.('</th>');
+                            $modals = $modals.('</tr>');
                             foreach($citesara as $cita1) {
-                                $modals = $modals.$cita1["data"].$cita1["comentari"];       
+                                $modals = $modals.('<tr><td>'.$cita1["data"].'</td><td>'.$cita1["comentari"].'</td></tr>');       
                             }
         
-                        $modals = $modals.'
+                        $modals = $modals.'</table>
         
                         </div>
         
@@ -92,7 +101,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
             include "../src/vistes/portada.php";
             
     } else {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 60; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -105,13 +114,26 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                             </div>
                         <div class="modal-body">
         
-                        <div>';
-                        $citesara = citesdiaadmin($cita, $data, $sesio, $usuario);
-                        foreach($citesara as $cita1) {
-                            $modals = $modals.$cita1["nom"].$cita1["data"].$cita1["comentari"];                               
-                        }
+                        <div class="reservs">
+                            <h5>Les meves reserves</h5>';
+                            $citesara = citesdiaadmin($cita, $data, $sesio, $usuario);
+                            $modals = $modals.('<table class="table table-striped table-hover">');
+                            $modals = $modals.('<tr>');
+                            $modals = $modals.('<th>');
+                            $modals = $modals.('Usuari');
+                            $modals = $modals.('</th>');
+                            $modals = $modals.('<th>');
+                            $modals = $modals.('Data/Hora');
+                            $modals = $modals.('</th>');
+                            $modals = $modals.('<th>');
+                            $modals = $modals.('Comentari');
+                            $modals = $modals.('</th>');
+                            $modals = $modals.('</tr>');
+                            foreach($citesara as $cita1) {
+                                $modals = $modals.('<tr><td>'.$cita1["nom"].'</td><td>'.$cita1["data"].'</td><td>'.$cita1["comentari"].'</td></tr>');       
+                            }
         
-                        $modals = $modals.'
+                        $modals = $modals.'</table>
         
                         </div>
         
@@ -179,10 +201,9 @@ function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 }
 
 function citesdiaadmin($modelcita, $data, $modelsessio,$modelusuari) {
-
- $dataparam = ($data->format("Y-m-d"));
+    $dataparam = ($data->format("Y-m-d"));
     //echo($dataparam);
-   //echo($modelusuari->getid($modelsessio->obtenirnom()));
+    //echo($modelusuari->getid($modelsessio->obtenirnom()));
     $cites = $modelcita->obtenircitesundia($dataparam);
     return $cites;
 }
