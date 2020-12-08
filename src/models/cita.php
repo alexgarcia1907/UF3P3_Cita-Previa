@@ -58,4 +58,13 @@ class cita {
         }
         return $dades;
     }
+
+    public function existeixlacita($dataihora) {
+        $datos = [];
+        $query = $this->sql->prepare('select * from cita where data = :dataihora');
+        $result = $query ->execute([':dataihora' => $dataihora]);
+        $datos = $query->fetch(\PDO::FETCH_ASSOC);
+        return $datos;
+    }
+
 }
