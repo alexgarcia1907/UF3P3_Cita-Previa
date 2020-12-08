@@ -15,7 +15,7 @@ $festius = array(
     12 => array(8,25)
 );
 
-$diescalendari = 30;
+$diescalendari = 34;
 
 $añoactu = new DateTime();
 $añoactual = $añoactu -> format('Y');
