@@ -15,6 +15,7 @@ $festius = array(
     12 => array(8,25)
 );
 
+
 $añoactu = new DateTime();
 $añoactual = $añoactu -> format('Y');
 
@@ -27,8 +28,9 @@ $mesactual = $mesactu -> format ('n');
 
 
 $config["hash"] = ["cost" => 12];
-//Param conexio bbdd
 
+
+//Param conexio bbdd
 $host = 'sikuu.ddns.net';
 $bbdd = 'uf3p3_cita_previa';
 $user = 'victor';
