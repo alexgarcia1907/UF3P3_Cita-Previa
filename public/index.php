@@ -42,5 +42,5 @@ if ($r == "login") {
 } else if ($r == 'borracita') {
     ctrlEliminaCita($_POST, $modelcita, $modelusuari, $modelsessio);
 } else {
-    ctrl_portada($modelsessio,$modelusuari,$modelcita,$_GET["error"]);
+    ctrl_portada($modelsessio,$modelusuari,$modelcita,$diescalendari,$festius,$_GET["error"]);
 }
