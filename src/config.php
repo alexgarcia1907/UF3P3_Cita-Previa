@@ -17,9 +17,20 @@ $festius = array(
 
 $diescalendari = 30;
 
-$config["hash"] = ["cost" => 12];
-//Param conexio bbdd
+$añoactu = new DateTime();
+$añoactual = $añoactu -> format('Y');
 
+$diaactual = new DateTime();
+$diaactu =  $diaactual -> format('j');
+
+
+$mesactu = new DateTime();
+$mesactual = $mesactu -> format ('n');
+
+$config["hash"] = ["cost" => 12];
+
+
+//Param conexio bbdd
 $host = 'sikuu.ddns.net';
 $bbdd = 'uf3p3_cita_previa';
 $user = 'victor';

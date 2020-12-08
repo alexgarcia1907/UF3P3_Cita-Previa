@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Model per controlar les cites.
+ */
 class cita {
     public function conecta($nombd,$hostbd,$userbd,$passbd) {
         $parambbdd = "mysql:dbname=$nombd;host=$hostbd;";

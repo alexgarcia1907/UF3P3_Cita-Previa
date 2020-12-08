@@ -61,6 +61,12 @@ function creaCalendari($diadt, $diesamostrar, $festius = array()) {
 }
 
 
+/**
+ * Funció per mostrar una taula amb totes les cites que hi ha a la BDD, mostrar en l'apartat de configuració de l'admin.
+ *
+ * @param [Model cita] $cita
+ * @return void $todo
+ */
 function mostrardatos($cita){
   $datos = $cita -> obtenirtot();
   $todo = "";
