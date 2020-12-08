@@ -111,7 +111,7 @@ function mostrardatos($cita){
             $todo = $todo . ('</th><th></th></tr>');
 
             foreach ($datos as $fila){
-                $todo = $todo . ('<tr><td>'.$fila["nom"].'</td><td>'.$fila["data"].'</td><td>'.$fila["comentari"].'</td><td><button type="submit" class="btn btn-dark">Elimina</button></td></tr>');
+                $todo = $todo . ('<tr><td>'.$fila["nom"].'</td><td>'.$fila["data"].'</td><td>'.$fila["comentari"].'</td><td><form method="post" action="index.php"><input hidden name="r" value="borracita"><button name="cita" value="'.$fila["idcita"].'" type="submit" class="btn btn-dark">Elimina</button></form></td></tr>');
                 
             }
             

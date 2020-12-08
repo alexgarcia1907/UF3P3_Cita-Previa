@@ -39,7 +39,7 @@ class cita {
 
     public function obtenirtot(){
         $dades = [];
-        $query = $this->sql->prepare('select u.nom,c.data,c.comentari from cita c join usuari u where c.idusuari = u.id;');
+        $query = $this->sql->prepare('select c.idcita, u.nom,c.data,c.comentari from cita c join usuari u where c.idusuari = u.id;');
         $result = $query->execute();
 
         while ($value = $query -> fetch(\PDO::FETCH_ASSOC)) {
@@ -65,6 +65,12 @@ class cita {
         $result = $query ->execute([':dataihora' => $dataihora]);
         $datos = $query->fetch(\PDO::FETCH_ASSOC);
         return $datos;
+    }
+
+    public function borrarunacita($idcita) {
+        $query = $this->sql->prepare('delete from cita where idcita = :idcita');
+        $result = $query->execute([':idcita' => $idcita]);
+
     }
 
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="barrikaadmin"></div>
-    <form action="index.php?r=configadmin" method="post">
+    <form action="index.php" method="post">
         <button type="submit" class="confug">CONFIGURACIÓ</button>
         <input type="hidden" name="r" value="configadmin">
     </form>
