@@ -62,10 +62,17 @@ function ctrl_portada($sesio,$usuario,$cita,$diesdeportada,$festius,$error = "")
 
                                 <select type="select" name="hora">';
                                     $data->setTime(9,0,0);
+                                    $contador = 0;
                                     for ($j = 0; $j < 9; $j++) {
                                         $veras = existeixlahora($data->format("Y-m-d")." ".$data->format("H:i:s"), $cita);
                                         if ($veras) {
                                             $modals = $modals . '<option disabled>'. $data -> format("H:i").' - (No disponible)</option>';
+                                            $contador++;
+                                            if ($contador > 8) {
+                                                $modals = $modals.'<script>$(\'button[data-target="#'.$i.'Modal"]\').parent().addClass("bg-ple");</script>';
+                                                
+                                            }
+                                        
                                         } else {
                                             $modals = $modals .'<option>'. $data -> format("H:i").'</option>';
                                         }
