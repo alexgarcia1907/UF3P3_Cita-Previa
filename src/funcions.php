@@ -34,10 +34,10 @@ function creaCalendari($mesfuncio,$anyfuncio, $diesamostrar, $festius = array())
       $totalceldas = $diaactualsetmana-1 + $diesamostrar + (7-(($diesamostrar + $diaactualsetmana-1)%7));
       $celdasquellevo = 0;
 
-      if (date("N") != 1) {
+      /*if (date("N") != 1) {
         $muchotexto = $muchotexto . '<tr class="white">';
 
-      }
+      }*/
 
       for ($i = 0; $i < date("N") -1; $i++) {
         $muchotexto = $muchotexto . '<tr class="white">';

@@ -11,15 +11,16 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
         echo("<div class=alert>Aquesta hora ja esta reservada.</div>" );
     }
 
-    $calendar = creaCalendari($mesactual, $añoactu, 60, $festius);
+    $calendar = creaCalendari($mesactual, $añoactu, 20, $festius);
 
-    $data = new DateTime();
+    $data = new DateTime();    
+
     $modals = "";
 
     $rol = $usuario -> getrol($sesio->obtenirnom());
 
     if ($rol != "admin") {
-        for ($i = 0; $i < 60; $i++) {
+        for ($i = 0; $i < 20; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -35,9 +36,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                         <div>';
                             $citesara = citesdia($cita, $data, $sesio, $usuario);
                             foreach($citesara as $cita1) {
-                                $modals = $modals.$cita1["data"].$cita1["comentari"];
-                                
-                                
+                                $modals = $modals.$cita1["data"].$cita1["comentari"];       
                             }
         
                         $modals = $modals.'
@@ -49,12 +48,26 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                                 <p>L\'horari disponible és de 9:00 a 13:00.</p>
                                 <p>Per evitar l\'aglomeració de clients, les reserves disponibles seran cada 30 minuts.</p>
                                 <label>Escull l\'hora:</label>
-                                <input required name="hora" type="time" step="1800" min="09:00" max="13:00">
+
+                                <select type="select" name="hora">';
+                                    $hora = new DateTime();
+                                    $hora->setTime(9,0,0);
+                                    for ($j = 0; $j < 9; $j++) {
+                                        $veras = existeixlahora($data->format("Y-m-d")." ".$hora->format("H:i:s"), $cita);
+                                        if ($veras) {
+                                            $modals = $modals . '<option disabled>'. $hora -> format("H:i").' - (No disponible)</option>';
+                                        } else {
+                                            $modals = $modals .'<option>'. $hora -> format("H:i").'</option>';
+                                        }
+                                        
+                                        $hora->modify("+30 minutes");
+                                    }
+
+                                $modals = $modals .'</select><br>
+
                                 <input name="dia" hidden value="';
-                                $data->modify("-1 day");
-                                $modals = $modals .$data->format("Y-m-d") ;
-                                $data->modify("+1 day");
-                                $modals = $modals.'">
+                                
+                                $modals = $modals .$data->format("Y-m-d").'">
                                 <input name="r" hidden value="vportada">
                                 <label>Explica\'ns alguna cosa:</label>
                                 <input name="coment" type="text">
@@ -72,12 +85,14 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                 </div>
                 </div>
             </div>';
+            $data->modify("+1 day");
+
             }
           
             include "../src/vistes/portada.php";
             
     } else {
-        for ($i = 0; $i < 60; $i++) {
+        for ($i = 0; $i < 20; $i++) {
 
             $modals = $modals . '<div class="modal fade" id="'.$i.'Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -91,24 +106,42 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                         <div class="modal-body">
         
                         <div>';
-                            $citesara = citesdiaadmin($cita, $data, $sesio, $usuario);
-                            foreach($citesara as $cita1) {
-                                $modals = $modals.$cita1["nom"].$cita1["data"].$cita1["comentari"];
-                                                                
-                            }
+                        $citesara = citesdiaadmin($cita, $data, $sesio, $usuario);
+                        foreach($citesara as $cita1) {
+                            $modals = $modals.$cita1["nom"].$cita1["data"].$cita1["comentari"];                               
+                        }
         
                         $modals = $modals.'
         
                         </div>
         
-                        <form action="index.php?r=vportada" method="post">
+                        <form action="index.php" method="post">
                             <div class="formulari">
                                 <p>L\'horari disponible és de 9:00 a 13:00.</p>
                                 <p>Per evitar l\'aglomeració de clients, les reserves disponibles seran cada 30 minuts.</p>
                                 <label>Escull l\'hora:</label>
-                                <input type="time" step="1800" min="09:00" max="13:00">
+                                <select type="select" name="hora">';
+                                    $hora = new DateTime();
+                                    $hora->setTime(9,0,0);
+                                    for ($j = 0; $j < 9; $j++) {
+                                        $veras = existeixlahora($data->format("Y-m-d")." ".$hora->format("H:i:s"), $cita);
+                                        if ($veras) {
+                                            $modals = $modals . '<option disabled>'. $hora -> format("H:i").' - (No disponible)</option>';
+                                        } else {
+                                            $modals = $modals .'<option>'. $hora -> format("H:i").'</option>';
+                                        }
+                                        
+                                        $hora->modify("+30 minutes");
+                                    }
+
+                                $modals = $modals .'</select><br>
+
+                                <input name="dia" hidden value="';
+                                
+                                $modals = $modals .$data->format("Y-m-d").'">
+                                <input name="r" hidden value="vportada">
                                 <label>Explica\'ns alguna cosa:</label>
-                                <input type="text">
+                                <input name="coment" type="text">
                                 <div class="opcions">
                                 <button type="submit" class="btn btn-dark">Reserva</button>
                                 </div> 
@@ -123,6 +156,9 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
                 </div>
                 </div>
             </div>';
+            $data->modify("+1 day");
+
+            
             }
           
             include "../src/vistes/portadadmin.php";
@@ -133,7 +169,7 @@ function ctrl_portada($sesio,$usuario,$cita,$error = ""){
 function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 
     $dataparam = ($data->format("Y-m-d"));
-    $data->modify("+1 day");
+    //$data->modify("+1 day");
 
     //echo($dataparam);
    // echo($modelusuari->getid($modelsessio->obtenirnom()));
@@ -145,9 +181,14 @@ function citesdia($modelcita, $data, $modelsessio,$modelusuari) {
 function citesdiaadmin($modelcita, $data, $modelsessio,$modelusuari) {
 
  $dataparam = ($data->format("Y-m-d"));
-    $data->modify("+1 day");
     //echo($dataparam);
    //echo($modelusuari->getid($modelsessio->obtenirnom()));
     $cites = $modelcita->obtenircitesundia($dataparam);
     return $cites;
+}
+
+function existeixlahora($diahora, $modelcita) {
+//echo($diahora);
+
+return $modelcita-> existeixlacita($diahora);
 }
