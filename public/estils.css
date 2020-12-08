@@ -168,6 +168,24 @@ body{
     border: none;
 }
 
+.white td:nth-child(6n){
+    background-color: #232526;
+}
+.white td:nth-child(7n){
+    background-color: #232526;
+}
+
+.white td:nth-child(6n) button{
+    pointer-events: none;
+    background-color: #232526;
+    color: white;
+}
+.white td:nth-child(7n) button{
+    pointer-events: none;
+    background-color: #232526;
+    color: white;
+}
+
 .modal-header{
     background-color: #df5646 !important;
     color: white;
