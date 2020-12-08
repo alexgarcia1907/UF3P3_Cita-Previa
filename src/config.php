@@ -15,6 +15,8 @@ $festius = array(
     12 => array(8,25)
 );
 
+$diescalendari = 34;
+
 $config["hash"] = ["cost" => 12];
 
 
