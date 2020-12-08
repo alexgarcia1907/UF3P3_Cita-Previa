@@ -142,6 +142,8 @@ body{
 .mes{
     width: 100%;
     text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
 }
 .setmana{
     background-color:  #232526;
@@ -166,6 +168,24 @@ body{
     border: none;
 }
 
+.white td:nth-child(6n){
+    background-color: #232526;
+}
+.white td:nth-child(7n){
+    background-color: #232526;
+}
+
+.white td:nth-child(6n) button{
+    pointer-events: none;
+    background-color: #232526;
+    color: white;
+}
+.white td:nth-child(7n) button{
+    pointer-events: none;
+    background-color: #232526;
+    color: white;
+}
+
 .modal-header{
     background-color: #df5646 !important;
     color: white;
@@ -174,22 +194,42 @@ body{
 
 /*Portadaconfig*/
 .conf{
-    padding: 30px;
     margin-top: 50px;
     background-color: white;
     border-radius: 10px;
+    margin-bottom: 50px;
     -webkit-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 46px 4px rgba(0,0,0,0.75);
 }
 
 .header-config{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-top: 10px;
     width: 100%;
-    border-radius: 5px;
+    text-align: center;
+    height: 50px;
     background-color: #df5646;
     color: white;
+}
+.body-config{
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+.reservs{
+    padding: 30px 30px 0 30px;
+    text-align: center;
+}
+
+.table{
+    text-align: center;
 }
 
 .confu{
     margin-bottom: 20px;
 }
+
+

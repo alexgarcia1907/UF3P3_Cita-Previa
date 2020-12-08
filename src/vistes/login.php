@@ -37,14 +37,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                                     </div>
-                                    <input name="contrasenyareg" type="text" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
+                                    <input name="contrasenyareg" type="password" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
                                 </div>
                                 <label>Confirma la contrasenya:</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                                     </div>
-                                    <input name="contrasenya2reg" type="text" class="form-control" placeholder="Confirma contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
+                                    <input name="contrasenya2reg" type="password" class="form-control" placeholder="Confirma contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
                                 </div>
                                 <button name="enviareg" type="submit" class="enviem btn btn-dark">Registra't</button>
                             </form>
@@ -67,10 +67,6 @@
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                             </div>
                             <input name="contrasenyalogin" type="password" class="form-control" placeholder="Contrasenya" aria-label="Contrasenya" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">Recorda'm</label>
                         </div>
                         <button name="envialogin" type="submit" class="enviem btn btn-dark">Entra</button>
                         </form>

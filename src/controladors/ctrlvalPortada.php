@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Controlador per validar la reserva que s'esta efectuant, i inserir-la a la BDD.
+ *
+ * @param [$_POST] $post
+ * @param [$_SESSION] $sesio
+ * @param [Model usuari] $usuari
+ * @param [Model cita] $cita
+ * @return void
+ */
 function ctrlvalPortada($post, $sesio, $usuari, $cita){
     if(!$sesio -> sesiousuari()){
         include "../src/vistes/login.php";
@@ -22,11 +31,10 @@ function ctrlvalPortada($post, $sesio, $usuari, $cita){
             
 
             if(!$cita -> afegir($dadescita)){
-                $error = 1;//("<div class=alert>Aquesta hora ja esta reservada.</div>" );
+                $error = 1;
             }
 
             header("Location: index.php?error=$error");
-            //ctrl_portada($sesio,$usuari,$cita,$error);
         }
         else{
             header("Location: index.php");
