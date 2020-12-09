@@ -17,16 +17,6 @@ $festius = array(
 
 $diescalendari = 34;
 
-$añoactu = new DateTime();
-$añoactual = $añoactu -> format('Y');
-
-$diaactual = new DateTime();
-$diaactu =  $diaactual -> format('j');
-
-
-$mesactu = new DateTime();
-$mesactual = $mesactu -> format ('n');
-
 $config["hash"] = ["cost" => 12];
 
 
