@@ -42,7 +42,7 @@ function creaCalendari($diadt, $diesamostrar, $festius = array()) {
           $muchotexto = $muchotexto . '<tr class="white">';
         }
 
-          $muchotexto = $muchotexto . '<td><button class="white prov" data-toggle="modal" data-target="#'.$i.'Modal">'.$diadt->format("M j").'</button></td>';
+          $muchotexto = $muchotexto . '<td><button class="dia white prov" data-toggle="modal" data-dia="'.$diadt->format("Y-m-j").'" data-target="#'.$i.'Modal">'.$diadt->format("M j").'</button></td>';
 
           $diadt->modify("+1 day");
 
