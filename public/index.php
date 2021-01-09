@@ -13,6 +13,7 @@ include "../src/controladors/ctrlvalRegister.php";
 include "../src/controladors/ctrl_ConfigAdmin.php";
 include "../src/controladors/ctrlvalPortada.php";
 include "../src/controladors/Ctrl_eliminarCita.php";
+include "../src/controladors/ctrl_TancaSess.php";
 
 
 if (isset($_REQUEST["r"])) {
@@ -41,6 +42,8 @@ if ($r == "login") {
     ctrlConfigAdmin($modelusuari,$modelsessio,$modelcita);
 } else if ($r == 'borracita') {
     ctrlEliminaCita($_POST, $modelcita, $modelusuari, $modelsessio);
+} else if ($r == 'clusession') {
+    ctrlTancaSess();
 } else {
     ctrl_portada($modelsessio,$modelusuari,$modelcita,$diescalendari,$festius,$_GET["error"]);
 }

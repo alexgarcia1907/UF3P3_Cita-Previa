@@ -13,6 +13,10 @@
 <body>
     <div class="barrikaadmin"></div>
     <form action="index.php" method="post">
+        <button type="submit" class="confug">TANCA SESSIÓ</button>
+        <input type="hidden" name="r" value="clusession">
+    </form>
+    <form action="index.php" method="post">
         <button type="submit" class="confug">CONFIGURACIÓ</button>
         <input type="hidden" name="r" value="configadmin">
     </form>
