@@ -14,6 +14,8 @@ include "../src/controladors/ctrl_ConfigAdmin.php";
 include "../src/controladors/ctrlvalPortada.php";
 include "../src/controladors/Ctrl_eliminarCita.php";
 include "../src/controladors/ctrl_TancaSess.php";
+include "../src/controladors/ctrl_dia.php";
+
 
 
 if (isset($_REQUEST["r"])) {
@@ -38,6 +40,8 @@ if ($r == "login") {
     ctrlRegistrar($_POST, $modelsessio, $modelusuari);
 } else if ($r == "vportada"){
     ctrlvalPortada($_POST, $modelsessio, $modelusuari, $modelcita);
+} else if ($r == "dia") {
+    ctrldia($modelsessio,$modelusuari,$modelcita,$_GET);
 } else if ($r == "configadmin") {
     ctrlConfigAdmin($modelusuari,$modelsessio,$modelcita);
 } else if ($r == 'borracita') {
