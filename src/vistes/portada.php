@@ -12,7 +12,11 @@
 </head>
 <body>
     <div class="barrika"></div>
-    <div class= "calen">
+    <form action="index.php" method="post">
+        <button type="submit" class="confug">TANCA SESSIÓ</button>
+        <input type="hidden" name="r" value="clusession">
+    </form>
+    <div class = "calen">
         <?php
             echo($calendar);
             echo($modals);
