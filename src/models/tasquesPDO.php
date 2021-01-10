@@ -1,18 +1,21 @@
 <?php
 
+namespace Daw;
+
 /**
  * Model per controlar les cites.
  */
-class cita {
-    public function conecta($nombd,$hostbd,$userbd,$passbd) {
-        $parambbdd = "mysql:dbname=$nombd;host=$hostbd;";
-        $user = $userbd;
-        $pass = $passbd;
+class tasquesPDO {
+    public function __construct($config)
+    {
+        $dsn = "mysql:dbname={$config['dbname']};host={$config['host']}";
+        $usuari = $config['user'];
+        $clau = $config['pass'];
 
         try {
-            $this->sql = new PDO($parambbdd, $user, $pass);
-        } catch (PDOException $e) {
-            die('Bro... this is shit --> ' . $e->getMessage());
+            $this->sql = new \PDO($dsn, $usuari, $clau);
+        } catch (\PDOException $e) {
+            die('Ha fallat la connexió: ' . $e->getMessage());
         }
     }
 

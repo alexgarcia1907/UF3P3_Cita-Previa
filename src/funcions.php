@@ -11,6 +11,7 @@
 
 function creaCalendari($diadt, $diesamostrar, $festius = array()) {
 
+
   $muchotexto = "";
     $diessetmana = array("Dilluns","Dimarts","Dimecres", "Dijous","Divendres","Dissabte","Diumenge");
     $diaactualsetmana = date("N");
@@ -42,7 +43,7 @@ function creaCalendari($diadt, $diesamostrar, $festius = array()) {
           $muchotexto = $muchotexto . '<tr class="white">';
         }
 
-          $muchotexto = $muchotexto . '<td><button class="dia white prov" data-toggle="modal" data-dia="'.$diadt->format("Y-m-j").'" data-target="#'.$i.'Modal">'.$diadt->format("M j").'</button></td>';
+          $muchotexto = $muchotexto . '<td><button class="white prov dia" data-toggle="modal" data-dia="'.$diadt->format("Y-m-j").'" data-target="#'.$i.'Modal">'.$diadt->format("M j").'</button></td>';
 
           $diadt->modify("+1 day");
 

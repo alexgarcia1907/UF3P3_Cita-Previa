@@ -9,21 +9,26 @@
  * @param [$_SESSION] $sesio
  * @return void
  */
-function ctrlEliminaCita($post, $cita, $usuari, $sesio) {
+function ctrlEliminaCita($peticio, $resposta, $config) {
+    $nomusuari = $peticio->get('SESSION','usuari');
+    $usuario = new \Daw\UsuarisPDO($config["db"]); 
+    $rol = $usuario -> getrol($nomusuari);
 
-    $rol = $usuari -> getrol($sesio->obtenirnom());
-    
     if ($rol != "admin") {
-        header("Location: index.php");
+        $resposta->redirect("location: index.php");
+        return $resposta;
         die();
     } else {
-        if (isset($post["cita"]) && $post["cita"] != ""){
+        $cita = new \Daw\TasquesPDO($config["db"]);
+        $idcita = $peticio->get(INPUT_POST, "cita");
+        if (isset($idcita) && $idcita != ""){
 
-            $idcita = trim(filter_var($post["cita"], FILTER_SANITIZE_STRING));
+            $idcita = trim(filter_var($idcita, FILTER_SANITIZE_STRING));
 
             $cita->borrarunacita($idcita);
-            header("Location: index.php?r=configadmin");
 
+            $resposta->redirect("Location: index.php?r=configadmin");
+            return $resposta;
         }
     }
 }

@@ -6,14 +6,20 @@
  * @param [Model usuari] $usuari
  * @param [$_SESSION] $sesio
  */
-function ctrlConfigAdmin($usuari,$sesio,$cita){
-    $rol = $usuari -> getrol($sesio->obtenirnom());
+function ctrlConfigAdmin($peticio, $resposta, $config){
+    $nomusuari = $peticio->get('SESSION','usuari');
+    $usuario = new \Daw\UsuarisPDO($config["db"]); 
+    $rol = $usuario -> getrol($nomusuari);
 
     if ($rol != "admin") {
-        header("Location: index.php");
-        die();
+        $resposta->redirect("location: index.php");
+        return $resposta;
     }else{
+        $cita = new \Daw\TasquesPDO($config["db"]);
         $datos = mostrardatos($cita);
-        include "../src/vistes/portadaconfig.php";
+        $resposta->set("datos",$datos);
+        $resposta->SetTemplate("portadaconfig.php");
+        return $resposta;
     }
 }
+
