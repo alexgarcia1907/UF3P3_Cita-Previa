@@ -1,4 +1,20 @@
 <?php
+define("RUTA_PER_DEFECTE", 0);
+
+
+
+$config = array();
+
+/* configuració de connexió a la base dades */
+$config["db"] = array();
+$config["db"]["user"] = 'victor';
+$config["db"]["pass"] = '2001';
+$config["db"]["dbname"] = 'uf3p3_cita_previa';
+$config["db"]["host"] = 'sikuu.ddns.net';
+
+$config["hash"] = ["cost" => 12];
+
+$config["dies"] = 34;
 
 $festius = array(
     1 => array(1),
@@ -15,17 +31,12 @@ $festius = array(
     12 => array(8,25)
 );
 
-$diescalendari = 5;
-
-$config["hash"] = ["cost" => 12];
+$config["festius"] = $festius;
 
 
-//Param conexio bbdd
-$host = 'sikuu.ddns.net';
-$bbdd = 'uf3p3_cita_previa';
-$user = 'victor';
-$pass = '2001';
+require_once "../src/emeset/http/peticio.php";
+require_once "../src/emeset/http/resposta.php";
+require_once "../src/emeset/ruter/ruter.php";
 
-//No estic regalant un usuari amb permissos de root
-//L'usuari victor ha estat creat expressament per aquesta
-//practica i nomes té access a aquesta base de dades
+require_once "../src/models/tasquesPDO.php";
+require_once "../src/models/usuarisPDO.php";

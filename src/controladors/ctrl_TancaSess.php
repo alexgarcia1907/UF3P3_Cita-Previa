@@ -6,7 +6,8 @@
  * @param [Model usuari] $usuari
  * @param [$_SESSION] $sesio
  */
-function ctrlTancaSess(){
+function ctrlTancaSess($peticio,$resposta,$config){
     session_unset();
-    header('Location: index.php'); 
+    $resposta->redirect("location: index.php");
+    return $resposta;
 }

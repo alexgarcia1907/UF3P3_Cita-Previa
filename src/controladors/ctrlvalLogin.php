@@ -8,32 +8,30 @@
  * @return void
  */
 
-function ctrlvalLogin($parametre, $sessio, $usuaris){
-    if (isset($parametre["usuarilogin"]) && isset($parametre["contrasenyalogin"]) && $parametre["usuarilogin"] != "" && $parametre["contrasenyalogin"] != "") {
-        $usuari = trim(filter_var($parametre["usuarilogin"], FILTER_SANITIZE_STRING));
-        $contrasenya = trim(filter_var($parametre["contrasenyalogin"], FILTER_SANITIZE_STRING));
-    }else{
-        $errorlogin = "campsbuits";
+function ctrlvalLogin($peticio, $resposta, $config){
+    $usuaris = new \Daw\UsuarisPDO($config["db"]); 
 
-        include "../src/vistes/login.php";
-        die();
+    $usuari = $peticio->get(INPUT_POST, "usuarilogin");
+    $clau = $peticio->get(INPUT_POST, "contrasenyalogin");
+
+    $usuariActual =  $usuaris->getdades($usuari);
+    
+    $usuariActual = $usuariActual[0];
+    if (password_verify($clau, $usuariActual["contrasenya"]) === true /* && $usuariActual["borrat"] == 0 */) {
+      if(password_needs_rehash($usuariActual["contrasenya"], PASSWORD_DEFAULT, $config["hash"])){
+        $hash = password_hash($clau, PASSWORD_DEFAULT, $config["hash"]);
+        $usuaris->actualitzarClau($usuariActual["id"], $hash);
+      }
+      $resposta->setSession("usuari", $usuari );
+      $resposta->setSession("logat", true);
+      
+      
+      $resposta->redirect("location: index.php");
+    } else {
+      $resposta->setSession("error", "Usuari o clau incorrectes!");
+      $resposta->setSession("logat", false);
+      $resposta->redirect("location: index.php?r=login");
     }
 
-    $info = $usuaris -> getdades($usuari);
-
-    if (empty($info)){
-        $errorlogin = "incorrecte";
-
-        include "../src/vistes/login.php";
-        die();
-    }else{
-        if(password_verify($contrasenya, $info[0]["contrasenya"])===true){
-            $sessio-> insertarusuari(true, $usuari);
-            header("Location: index.php");
-        }else{
-            $errorlogin = "incorrecte";
-            include "../src/vistes/login.php";
-            die();
-        }
-    }
+    return $resposta;
 }
