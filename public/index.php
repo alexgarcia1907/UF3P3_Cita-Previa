@@ -39,7 +39,9 @@ include "../src/controladors/ctrl_ConfigAdmin.php";
 include "../src/controladors/ctrlvalPortada.php";
 include "../src/controladors/ctrl_dia.php";
 include "../src/controladors/error.php";
-
+include "../src/controladors/ctrlavislegal.php";
+include "../src/controladors/ctrlPoliticacookies.php";
+include "../src/controladors/ctrlPoliticaprivacitat.php";
 
 $r = $_REQUEST["r"];
 
@@ -63,7 +65,9 @@ $ruter->ruta("llistausuaris", "ctrlLlistatUsuaris", "authAdmin");
 $ruter->ruta("esborrar_usuari", "ctrlEsborrarUsuari", "authAdmin");
 $ruter->ruta("editar_usuari", "ctrlEditarUsuari", "authAdmin");
 $ruter->ruta("actualitzar_usuari", "ctrlActualitzarUsuari", "authAdmin");
-
+$ruter->ruta("avislegal","ctrlavislegal");
+$ruter->ruta("politica_cookies","ctrlPoliticacookies");
+$ruter->ruta("politica_privacitat","ctrlPoliticaprivacitat");
 
 
 $ruter->ruta(RUTA_PER_DEFECTE, "ctrlError");
